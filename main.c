@@ -22,13 +22,13 @@ int main(){
     list_push_back(l,&c);
     list_push_back(l,&d);
     list_push_back(l,&e);
-    
+
     //Deletes the element at index 3
     list_pop_at_index(l, 3);
     //Prints the list
     list_for_each(l, print_integer);
     //Deleting the list
-    list_delete(l, NULL);
+    list_destroy(l, NULL);
     
     return 0;
 

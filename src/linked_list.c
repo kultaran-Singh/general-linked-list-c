@@ -25,7 +25,7 @@ list* list_create(){
     return l;
 }
 
-bool list_delete(list* l, void (*free_data)(void* data)){
+bool list_destroy(list* l, void (*free_data)(void* data)){
     if(l == NULL){
         printf("ERROR: List does not exist\n");
         return NULL;

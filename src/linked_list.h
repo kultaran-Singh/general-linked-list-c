@@ -6,7 +6,7 @@ typedef struct List list;
 
 //List Functions
 list* list_create();
-bool list_delete(list* l, void (*free_data)(void* data));
+bool list_destroy(list* l, void (*free_data)(void* data));
 
 //Insertion Functions
 void list_push_back(list* l, void* object);
