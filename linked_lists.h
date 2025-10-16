@@ -6,7 +6,9 @@ typedef struct List list;
 
 list* list_create();
 void list_push_back(list* l, void* object);
-void list_print(list* l);
+
 void list_push_front(list* l, void* object);
+void list_push_at_index(list* l, void* object, int index);
+
 
 #endif

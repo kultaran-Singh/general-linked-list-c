@@ -35,6 +35,7 @@ void list_push_back(list* l, void* object){
 
     if(l->head == NULL){
         l->head = new_node;
+        l->size++;
         return;
     }
     node* current = l-> head;
@@ -42,35 +43,54 @@ void list_push_back(list* l, void* object){
         current = current->next;
     }
     current->next = new_node;
+    l->size++;
     return;
 
 }
 
-void list_print(list* l){
-    if(l->head == NULL){
-        printf("List is empty! \n");
-        return;
-    }
-    node* current = l->head;
-    while(current != NULL){
-        printf("%d -->", current->element);
-        current = current->next;
-    }
-    printf("\n");
-    return;
-    
-}
+
 
 void list_push_front(list* l, void* object){
 
     node* current = l->head;
     if(current == NULL){
         current->element = object;
+        l->size++;
         return;
     }
     node* new_node = (node*)malloc(sizeof(node));
     new_node->next = current;
     new_node->element = object;
     l->head = new_node;
+    l->size++;
 
+}
+
+void list_push_at_index(list* l, void* object, int index){
+
+    if(index > l->size){
+        printf("ERROR: Index out of bounds.");
+        return;
+    }
+    else if(index == 0){
+        list_push_front(l, object);
+        return;
+    }
+    else if(index == l->size){
+        list_push_back(l, object);
+        return;
+    }
+    int current_index = 0;
+    node* current_node = l->head;
+    while(current_index < index - 1){
+        current_node = current_node->next;
+        current_index++;
+    }
+    node* new_node = (node*)malloc(sizeof(node));
+    new_node->next = current_node->next;
+    new_node->element = object;
+    current_node->next = new_node;
+    
+    l->size++;
+    return;
 }
