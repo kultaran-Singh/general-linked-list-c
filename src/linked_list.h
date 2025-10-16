@@ -1,5 +1,5 @@
-#ifndef LINKED_LISTS_H
-#define LINKED_LISTS_H
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
 
 typedef struct Node node;
 typedef struct List list;
@@ -21,8 +21,8 @@ void* list_pop_at_index(list* l, int index);
 //Lookup Functions
 void* get_item_at_index(list* l, int index);
 
-//Helper Functions
+//General Functions
 size_t get_list_size(list* l);
-
+void list_for_each(list* l, void (*operation)(void* data));
 
 #endif

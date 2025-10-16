@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-#include "linked_lists.h"
+#include <linked_list.h>
 
 typedef struct Node{
     void* element;
@@ -249,8 +249,28 @@ void* get_item_at_index(list*l, int index){
     return current_node->next->element;
 }
 
-//Helper Functions
-
+//General Functions
 size_t get_list_size(list* l){
     return l->size;
+}
+
+void list_for_each(list* l, void (*operation)(void* data)){
+    if(l == NULL){
+        printf("ERROR: List does not exist\n");
+        return;
+    }
+    if(l->head == NULL){
+        printf("ERROR: List is empty\n");
+        return;
+    }
+    node* current_node = l->head;
+    if(operation == NULL){
+        printf("No Operation Provided\n");
+        return;
+    }
+    while(current_node != NULL){
+        operation(current_node->element);
+        current_node = current_node->next;
+    }
+    return;
 }
