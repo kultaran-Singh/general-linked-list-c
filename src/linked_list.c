@@ -12,20 +12,22 @@ typedef struct Node{
 typedef struct List{
     struct Node* head;
     struct Node* tail;
+    void (*free_data)(void* data);
     size_t size;
 }list;
 
 //List Functions
-list* list_create(){
+list* list_create(void (*free_data)(void* data)){
     list* l;
     l = (list*)malloc(sizeof(list));
     l->head = NULL;
+    l->free_data = free_data;
     l->tail = NULL;
     l->size = 0;
     return l;
 }
 
-bool list_destroy(list* l, void (*free_data)(void* data)){
+bool list_destroy(list* l){
     if(l == NULL){
         printf("ERROR: List does not exist\n");
         return NULL;
@@ -36,8 +38,8 @@ bool list_destroy(list* l, void (*free_data)(void* data)){
     while(current_node != NULL){
         next_node = current_node->next;
 
-        if(free_data != NULL){
-            free_data(current_node->element);
+        if(l->free_data != NULL){
+            l->free_data(current_node->element);
         }
         
         free(current_node);

@@ -10,7 +10,7 @@ void print_integer(void* data){
 int main(){
 
     //Creating the list
-    list* l = list_create();
+    list* l = list_create(NULL);
     int a = 10;
     int b = 20;
     int c = 30;
@@ -28,7 +28,7 @@ int main(){
     //Prints the list
     list_for_each(l, print_integer);
     //Deleting the list
-    list_destroy(l, NULL);
+    list_destroy(l);
     
     return 0;
 
