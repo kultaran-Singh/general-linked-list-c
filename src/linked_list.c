@@ -85,12 +85,15 @@ void list_push_front(list* l, void* object){
         return;
     }
     node* current = l->head;
+    node* new_node = (node*)malloc(sizeof(node));
     if(current == NULL){
+        current = new_node;
         current->element = object;
+        current->next = NULL;
         l->size++;
         return;
     }
-    node* new_node = (node*)malloc(sizeof(node));
+    
     if(new_node == NULL){
         printf("ERROR: MEMORY ALLOCATION FAILED.\n");
         return;
